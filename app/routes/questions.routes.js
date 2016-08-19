@@ -3,9 +3,9 @@ module.exports = function(app) {
 
 
   // restful questions routes. Should have the following routes:
-  // /questions/ with action "get" that calls the index method in questionsController shows all the questions
+  // /questions with action "get" that calls the index method in questionsController shows all the questions
 
-  // /questions/ with action "post" that calls the create method in questionsController that creates new question
+  // /questions with action "post" that calls the create method in questionsController that creates new question
 
   // /questions/:date with action "get" that calls the dateshow method in questionsController shows all the questions created on that date
 

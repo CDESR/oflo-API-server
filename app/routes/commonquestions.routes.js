@@ -3,7 +3,9 @@ module.exports = function(app) {
 
 
   // restful collatedquestions routes. Should have the following routes:
-  // /commonquestions/ with action "get" that calls the index method in commonquestionsController that shows all the common questions
+  // /commonquestions with action "get" that calls the index method in commonquestionsController that shows all the common questions
+
+  // /commonquestions with action "post" that calls the create method in commonquestionsController that creates new common question
 
   // /commonquestions/vote with action "get" that calls the showvote method in commonquestionsController that shows all the common questions that has "can vote" field set as true
 

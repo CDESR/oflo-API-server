@@ -5,6 +5,8 @@ module.exports = {
 
   // login method
 
+  // show method
+
   // update method
 
   // user_by_id method

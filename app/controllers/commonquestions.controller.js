@@ -3,6 +3,8 @@ var CommonQuestions = require('mongoose').model('CommonQuestions');
 module.exports = {
   // index method
 
+  // create method
+
   // showvote method
 
   // changestatus method
