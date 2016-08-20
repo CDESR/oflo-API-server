@@ -75,15 +75,30 @@ module.exports = {
 },
 
   // update method---------------------------------
-  update: function(req, res) {
-  var user_id = req.params.user_id;
-  var updated_user = new User(req.body);
 
-  updated_user.save(function(err) {
-    if (err) return res.status(400).send(err);
-    res.send(updated_user);
-  });
-}
+
+//   update: function(req, res) {
+//   var user_id = req.params.user_id;
+//   var updated_user = new User(req.body);
+//
+//   updated_user.save(function(err) {
+//     if (err) return res.status(400).send(err);
+//     res.send(updated_user);
+//   });
+// }
+
+update: function(req, res, next) {
+    var user_id = req.user.id;
+
+    User.findByIdAndUpdate(user_id, req.body, function(err, user) {
+      if (err) res.status(400).send(err);
+      User.findOne({
+        _id: user_id
+      }, function(err, user) {
+        res.json(user);
+      });
+    });
+  }
 
 
   // user_by_id method
