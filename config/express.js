@@ -12,7 +12,6 @@ var config = require('./config'),
   bodyParser = require('body-parser'),
   methodOverride = require('method-override'),
   expressLayouts = require('express-ejs-layouts'),
-  session = require('express-session'),
   expressJWT = require('express-jwt'),
   jwt = require('jsonwebtoken');
 
