@@ -47,9 +47,9 @@ module.exports = function() {
       path: [ '/users/signup',
               '/users/login',
               {url: '/questions',
-              method: ['GET']},
+              methods: ['GET']},
               {url: '/commonquestions',
-              method: ['GET']},
+              methods: ['GET']},
             ]
           }
         )
