@@ -12,5 +12,5 @@ var CommonQuestionSchema = new Schema({
 
 });
 
-
-mongoose.model('CommonQuestion', CommonQuestionSchema);
+var CommmonQuestion = mongoose.model('CommonQuestion', CommonQuestionSchema);
+module.export = CommmonQuestion;

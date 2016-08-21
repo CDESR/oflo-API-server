@@ -23,6 +23,10 @@ app.route('/users/:user_id')
 
 
 
+<<<<<<< HEAD:app/routes/users.routes.js
   // app.param('user_id', usersController.user_by_id);
+=======
+  // app.param('user_id', usersControllor.user_by_id);
+>>>>>>> 57a256673d4f88d3b1de70a7d8658b0f2427a23c:app/routes/users.routes.js
 
  };
