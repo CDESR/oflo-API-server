@@ -28,14 +28,13 @@ module.exports = {
     var date_arr = date.split('-');
     var year = parseInt(date_arr[0]);
     var month = parseInt(date_arr[1] -1);
-    var day = parseInt(date_arr[2]);
-    console.log(parseInt(date_arr[0]) + " " + parseInt(date_arr[1]) + " " + parseInt(date_arr[2]) );
-    var querydate = new Date(year,month, day);
-    console.log(querydate);
+    var startday = parseInt(date_arr[2]);
+    var endday = parseInt(date_arr[2] +1);
 
+    var querystartdate = new Date(year,month, startday);
+    var queryenddate = new Date(year,month, endday);
 
-
-    Question.find({createdAt: {"$gte": querydate}   }, function (err, questions) {
+    Question.find({createdAt: {"$gte": querystartdate, "$lt": queryenddate}   }, function (err, questions) {
       if (err) {
         res.status(400).send(err);
       }

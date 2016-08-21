@@ -20,7 +20,7 @@ module.exports = function(app) {
 
 
   // app.param('question_id', questionsController.question_by_id);
-  // app.param('date', questionsController.questions_by_date);
+  
 
 
 };
