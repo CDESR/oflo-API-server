@@ -32,10 +32,6 @@ module.exports = function() {
   app.use(bodyParser.json());
   app.use(methodOverride());
 
-<<<<<<< HEAD
-=======
-
->>>>>>> develop
 
   app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");

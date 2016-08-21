@@ -91,13 +91,6 @@ module.exports = {
 //   });
 // }
 
-<<<<<<< HEAD
-=======
-update: function(req, res, next) {
-    var user_id = req.params.user_id;
->>>>>>> develop
-
-
 
 // update: function(req, res, next) {
 //     var user_id = req.user.id;
@@ -121,8 +114,6 @@ update: function (req, res, next) {
   var last_name = req.body.last_name;
   var admin = req.body.admin;
 
-
-
   console.log(user_id);
   console.log(password);
 
@@ -141,11 +132,6 @@ update: function (req, res, next) {
     }
   });
 }
-
-
-
-
-  // user_by_id method
 
 
 
