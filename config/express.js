@@ -32,13 +32,6 @@ module.exports = function() {
   app.use(bodyParser.json());
   app.use(methodOverride());
 
-  app.use(cookieParser());
-
-  app.use(session({
-    saveUninitialized: true,
-    resave: true,
-    secret: config.sessionSecret
-  }));
 
   app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
