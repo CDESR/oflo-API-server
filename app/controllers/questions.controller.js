@@ -13,7 +13,6 @@ module.exports = {
   // create method
   create: function(req, res, next) {
      var question = new Question(req.body);
-     question.question_content = "test question";
      var new_user = new User();
     //  question.users.push(new_user);
 
@@ -25,7 +24,23 @@ module.exports = {
 
   // dateshow method
   dateshow: function(req, res, next) {
-    res.json(new Date());
+    var date = req.params.date;
+    var date_arr = date.split('-');
+    var year = parseInt(date_arr[0]);
+    var month = parseInt(date_arr[1] -1);
+    var day = parseInt(date_arr[2]);
+    console.log(parseInt(date_arr[0]) + " " + parseInt(date_arr[1]) + " " + parseInt(date_arr[2]) );
+    var querydate = new Date(year,month, day);
+    console.log(querydate);
+
+
+
+    Question.find({createdAt: {"$gte": querydate}   }, function (err, questions) {
+      if (err) {
+        res.status(400).send(err);
+      }
+      res.json(questions);
+    });
  }
   // answered method
   // question_by_id method

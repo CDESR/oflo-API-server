@@ -32,13 +32,7 @@ module.exports = function() {
   app.use(bodyParser.json());
   app.use(methodOverride());
 
-  // app.use(cookieParser());
 
-  app.use(session({
-    saveUninitialized: true,
-    resave: true,
-    secret: config.sessionSecret
-  }));
 
   app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -46,20 +40,20 @@ module.exports = function() {
     next();
   });
 
-  // express-jwt
-// app.use( expressJWT({
-//   secret: jwt_secret})
-//   .unless({
-//     path: [ '/users/signup',
-//             '/users/login',
-//             {url: '/questions',
-//              method: ['GET']},
-//             {url: '/commonquestions',
-//              method: ['GET']},
-//           ]
-//   }
-//   )
-// );
+// express-jwt
+  app.use( expressJWT({
+    secret: jwt_secret})
+    .unless({
+      path: [ '/users/signup',
+              '/users/login',
+              {url: '/questions',
+              method: ['GET']},
+              {url: '/commonquestions',
+              method: ['GET']},
+            ]
+          }
+        )
+      );
 
 
   require('../app/routes/users.routes')(app);

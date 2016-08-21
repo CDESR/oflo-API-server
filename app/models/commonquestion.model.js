@@ -15,15 +15,15 @@ var CommonQuestionSchema = new Schema({
     type: Boolean,
     default: false
   },
-  votedYes: {
+  votedYes: [{
     type: Schema.Types.ObjectId,
     ref: 'User'
-  },
+  }],
   voteYes: Array,
-  votedNo: {
+  votedNo: [{
     type: Schema.Types.ObjectId,
     ref: 'User'
-  },
+  }],
   answer: String
 },
 {

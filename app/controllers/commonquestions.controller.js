@@ -125,7 +125,7 @@ console.log(commonquestion);
       if (err) return res.status(400).send(err);
 
       res.json(commonquestion);
-    })
+    });
     },
 
   // answered method
@@ -137,11 +137,8 @@ console.log(commonquestion);
       if (err) return res.status(400).send(err);
 
       res.json(commonquestion);
-    })
+    });
     },
 
-  // commonquestion_by_id method
-
-  // commonquestions_by_date method
 
 };

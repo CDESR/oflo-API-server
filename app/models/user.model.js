@@ -26,7 +26,7 @@ var userSchema = new Schema ({
     required: true,
     validate: [
       function(password) {
-        return password.length >= 4;
+        return password.length >= 6;
       },
       'Password is too short'
     ]
@@ -57,7 +57,6 @@ userSchema.pre('save', function(next) {
 });
 
 userSchema.methods.auth = function(posted_password, callback) {
-  console.log('posted_password is: ' + posted_password);
 
   // comparing
   // 1st arg = posted password from req.body

@@ -11,7 +11,7 @@ module.exports = function(app) {
   // /questions with action "post" that calls the create method in questionsController that creates new question
 
   // /questions/:date with action "get" that calls the dateshow method in questionsController shows all the questions created on that date
-  app.route('/questions/date')
+  app.route('/questions/:date')
     .get(questionsController.dateshow);
 
   // /questions/:question_id with action "put" that calls the answered method updates the answered field of the question with id = question_id

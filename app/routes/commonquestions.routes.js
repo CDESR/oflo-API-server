@@ -19,7 +19,7 @@ module.exports = function(app) {
   app.route('/commonquestions/vote')
     .get(commonquestionsController.showvote);
 
-  app.route('/commonquestions/vote/:commonquestion_id')
+  app.route('/commonquestions/:commonquestion_id')
     .put(commonquestionsController.changestatus);
 
   // app.route('/commonquestions/vote/:commonquestion_id')
@@ -39,7 +39,7 @@ module.exports = function(app) {
 
   // /commonquestions/:commonquestion_id/yes with action "put" that calls the voteyes method in commonquestionsController that updates the common question with id = :commonquestion_id and pushes in the name of the user into the "yes" array
 
-  app.route('/commonquestions/yes/:commonquestion_id')
+  app.route('/commonquestions/:commonquestion_id/yes')
     .get(commonquestionsController.showyes)
     .put(commonquestionsController.voteyes);
 
@@ -47,21 +47,13 @@ module.exports = function(app) {
 
   // /commonquestions/:commonquestion_id/no with action "put" that calls the voteno method in commonquestionsController that updates the common question with id = :commonquestion_id and pushes in the name of the user into the "no" array
 
-  app.route('/commonquestions/no/:commonquestion_id')
+  app.route('/commonquestions/:commonquestion_id/no')
     .get(commonquestionsController.showno)
     .put(commonquestionsController.voteno);
 
   // /commonquestions/:commonquestion_id/answered with action "put" that calls the answered method in the commonquestionsController that updates the answered field of the  common question with id = :commonquestion_id
 
-  app.route('/commonquestions/answered/:commonquestion_id')
+  app.route('/commonquestions/:commonquestion_id/answered')
     .put(commonquestionsController.answered);
-
-  // app.param('commonquestion_id', commonquestionsController.commonquestion_by_id );
-  //
-  // app.param('date', commonquestionsController.commonquestions_by_date);
-<<<<<<< HEAD
-=======
-
->>>>>>> d37937bcee7dab8a32143c98de09963f752975bc
 
 };
