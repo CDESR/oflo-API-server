@@ -26,8 +26,8 @@ module.exports = function(app) {
   // /commonquestions/:commonquestion_id/answered with action "put" that calls the answered method in the commonquestionsController that updates the answered field of the  common question with id = :commonquestion_id
 
 
-  app.param('commonquestion_id', commonquestionsController.commonquestion_by_id );
-
-  app.param('date', commonquestionsController.commonquestions_by_date);
+  // app.param('commonquestion_id', commonquestionsController.commonquestion_by_id );
+  //
+  // app.param('date', commonquestionsController.commonquestions_by_date);
 
 };

@@ -1,4 +1,4 @@
-var CommonQuestions = require('mongoose').model('CommonQuestions');
+var CommonQuestions = require('mongoose').model('CommonQuestion');
 
 module.exports = {
   // index method

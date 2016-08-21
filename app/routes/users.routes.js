@@ -11,6 +11,6 @@ module.exports = function(app) {
 
   // /users/:user_id with action "put" that calls the update method in usersControllor
 
-  app.param('user_id', usersControllor.user_by_id);
+  // app.param('user_id', usersControllor.user_by_id);
 
  };
