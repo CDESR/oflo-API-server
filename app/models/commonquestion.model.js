@@ -9,7 +9,25 @@ var mongoose = require('mongoose'),
 // no (that is an array that embeds the documents of all the users that voted no on this question)
 
 var CommonQuestionSchema = new Schema({
-
+  name: String,
+  commonQuestion: String,
+  canVote: {
+    type: Boolean,
+    default: false
+  },
+  votedYes: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  voteYes: Array,
+  votedNo: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  answer: String
+},
+{
+  timestamps: {}
 });
 
 var CommmonQuestion = mongoose.model('CommonQuestion', CommonQuestionSchema);
