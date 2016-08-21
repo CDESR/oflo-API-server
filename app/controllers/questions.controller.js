@@ -24,12 +24,22 @@ module.exports = {
    },
 
   // dateshow method
-  dateshow: function(req, res, next) {
-    res.json(new Date());
- }
+  
   // answered method
-  // question_by_id method
+  answered: function(req, res, next) {
+    var question_id = req.params.question_id;
+    var answered = new Answered(req.body);
+    question.answered = default false;
+    res.json(answered);
+  }
 
   // questions_by_date method
+  questions_by_date: function(req, res, next) {
+    var questions_by_date =
+  }
 
+  // question_by_id method
+  question_by_id: function(req, res, next) {
+    var question_by_id = question
+  }
 };
