@@ -32,6 +32,10 @@ module.exports = function() {
   app.use(bodyParser.json());
   app.use(methodOverride());
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> develop
 
   app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -39,20 +43,20 @@ module.exports = function() {
     next();
   });
 
-  // express-jwt
-app.use( expressJWT({
-  secret: jwt_secret})
-  .unless({
-    path: [ '/users/signup',
-            '/users/login',
-            {url: '/questions',
-             method: ['GET']},
-            {url: '/commonquestions',
-             method: ['GET']},
-          ]
-  }
-  )
-);
+// express-jwt
+  app.use( expressJWT({
+    secret: jwt_secret})
+    .unless({
+      path: [ '/users/signup',
+              '/users/login',
+              {url: '/questions',
+              methods: ['GET']},
+              {url: '/commonquestions',
+              methods: ['GET']},
+            ]
+          }
+        )
+      );
 
 
   require('../app/routes/users.routes')(app);

@@ -2,8 +2,6 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     bcrypt = require('bcrypt');
 
-// create User schema that has first_name, last_name, email (must be unique, must be valid email), password (must be longer than 6 characters), password, creates a virtual 'fullname', hash the password before save and an instance method called authenticate that uses bcrypt.compare
-
 var userSchema = new Schema ({
   first_name: {
     type: String,
@@ -28,7 +26,7 @@ var userSchema = new Schema ({
     required: true,
     validate: [
       function(password) {
-        return password.length >= 4;
+        return password.length >= 6;
       },
       'Password is too short'
     ]
@@ -59,7 +57,6 @@ userSchema.pre('save', function(next) {
 });
 
 userSchema.methods.auth = function(posted_password, callback) {
-  console.log('posted_password is: ' + posted_password);
 
   // comparing
   // 1st arg = posted password from req.body
@@ -84,6 +81,5 @@ userSchema.virtual('fullName')
 //register the getter and virtual modifiers
 userSchema.set('toJSON', { virtuals: true});
 userSchema.set('timestamps', {}); // default timestamps by default
-
 
 mongoose.model('User', userSchema);

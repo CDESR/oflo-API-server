@@ -23,6 +23,9 @@ app.route('/users/:user_id')
 
 
 
+
   // app.param('user_id', usersController.user_by_id);
+
+  // app.param('user_id', usersControllor.user_by_id);
 
  };

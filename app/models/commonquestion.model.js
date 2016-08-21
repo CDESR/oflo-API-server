@@ -9,8 +9,25 @@ var mongoose = require('mongoose'),
 // no (that is an array that embeds the documents of all the users that voted no on this question)
 
 var CommonQuestionSchema = new Schema({
-
+  content: {type: String, trim: true, required: [true, 'Question content is required']},
+  commonQuestion: String,
+  canVote: {
+    type: Boolean,
+    default: true
+  },
+  votedYes: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }],
+  votedNo: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }],
+  answer: String
+},
+{
+  timestamps: {}
 });
 
-
-mongoose.model('CommonQuestion', CommonQuestionSchema);
+var CommmonQuestion = mongoose.model('CommonQuestion', CommonQuestionSchema);
+module.export = CommmonQuestion;
