@@ -1,13 +1,13 @@
-var CommonQuestions = require('mongoose').model('CommonQuestion');
+var CommonQuestion = require('mongoose').model('CommonQuestion');
 
 module.exports = {
   // index method
   index: function(req, res) {
     CommonQuestion.find()
-                  .populate('users')
+                  .populate('votedYes')
+                  .populate('votedNo')
                   .exec(function(err, commonquestion) {
                     if (err) res.status(400).send(err);
-console.log(commonquestion);
                     res.json(commonquestion);
                   });
   },
@@ -20,7 +20,7 @@ console.log(commonquestion);
       if (err) return res.status(400).send(err);
 
       res.json(new_commonquestion);
-    })
+    });
     },
 
   // showvote method
@@ -76,12 +76,21 @@ console.log(commonquestion);
     CommonQuestion.findOne({
       _id: commonquestion_id
     })
-                  .populate('users')
+                  .populate('votedYes')
                   .exec(function(err, commonquestion) {
                     if (err) res.status(400).send(err);
 // console.log("arr " + commonquestion.voteYes.length);
-                    if ( commonquestion.voteYes.length > 0 ) {
-                      res.json(commonquestion);
+                    if ( commonquestion.votedYes.length > 0 ) {
+                      var users_arr = commonquestion.votedYes;
+                      var users_name_arr = [];
+                      console.log(commonquestion.votedYes);
+
+                      users_arr.forEach(function (users) {
+                        users_name_arr.push(users.fullName);
+                      });
+
+
+                      res.json(users_name_arr);
                   }
                   else res.end();
                   });
@@ -91,11 +100,18 @@ console.log(commonquestion);
   voteyes: function(req, res, next) {
 
     var commonquestion_id = req.params.commonquestion_id;
+    var user_id = req.body.user_id;
 
-    CommonQuestion.findByIdAndUpdate ( commonquestion_id, req.body, function(err, commonquestion) {
+    CommonQuestion.findById ( commonquestion_id, function(err, commonquestion) {
       if (err) return res.status(400).send(err);
 
-      res.json(commonquestion);
+      if (commonquestion) {
+        commonquestion.votedYes.push(user_id);
+        commonquestion.save(function (err, commonquestion) {
+          res.json(commonquestion);
+        });
+      }
+
     })
     },
 

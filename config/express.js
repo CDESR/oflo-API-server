@@ -33,7 +33,6 @@ module.exports = function() {
   app.use(methodOverride());
 
 
-
   app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
@@ -41,6 +40,7 @@ module.exports = function() {
   });
 
 // express-jwt
+
   // app.use( expressJWT({
   //   secret: jwt_secret})
   //   .unless({

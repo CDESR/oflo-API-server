@@ -12,13 +12,15 @@ module.exports = {
 },
   // create method
   create: function(req, res, next) {
-     var question = new Question(req.body);
-     var new_user = new User();
+     var question_object = req.body;
+     var questionObject = new Question(req.body.question);
+
+     var new_question = new Question(question_object);
     //  question.users.push(new_user);
 
-     question.save(function(err) {
-       if (err) return next(err);
-       res.json(question);
+     new_question.save(function(err, question) {
+       if (err) return res.status(400).send(err);
+       return res.status(200).send(question);
      });
    },
 
@@ -42,29 +44,23 @@ module.exports = {
     });
  },
   // answered method
-  answered: function(req, res) {
+  answered: function(req, res, next) {
+
     var question_id = req.params.question_id;
-    var answered = new answered(req.body);
-    // question.answered = default false;
-    res.json(answered);
-  },
 
-  // questions_by_date method
-  questions_by_date: function (req, res) {
-    var question_date = req.params.question_date;
-      Question.findOne({_date: question_date}, function (err, question) {
-      if(err) res.status(400).send(err);
-      res.send(question);
-    })
-  },
+    var answered = req.body.answered;
 
-  // question_by_id method
-questions_by_id: function (req, res) {
-  var question_id = req.params.question_id;
+    Question.findById(question_id, function(err, doc) {
+      if (doc) {
+        doc.answered = answered;
 
-  Question.findOne({_id: question_id}, function (err, question) {
-    if (err) res.status(400).send(err);
-    res.send(question);
-  })
-}
-}
+        doc.save(function (err) {
+          if (err) return res.status(400).send(err);
+          res.send(doc);
+
+        });
+      }
+
+    });
+  }
+};

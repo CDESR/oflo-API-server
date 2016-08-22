@@ -16,7 +16,11 @@ module.exports = function(app) {
 
   // /questions/:question_id with action "put" that calls the answered method updates the answered field of the question with id = question_id
   app.route('/questions/:question_id')
+
     .put(questionsController.answered);
+
+
+
 
 
 

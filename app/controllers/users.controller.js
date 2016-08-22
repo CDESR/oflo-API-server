@@ -67,6 +67,8 @@ module.exports = {
   show: function(req, res) {
   var user_id = req.params.user_id;
 
+  // console.log(user_id);
+
   User.findOne({ _id: user_id }, function(err, user) {
     if(err) res.status(400).send(err);
 
@@ -79,7 +81,9 @@ module.exports = {
 
 //   update: function(req, res) {
 //   var user_id = req.params.user_id;
-//   var updated_user = new User(req.body);
+//   var updated_user = User.findOne({ _id: user_id });
+//
+//   // console.log(user_id);
 //
 //   updated_user.save(function(err) {
 //     if (err) return res.status(400).send(err);
@@ -87,21 +91,47 @@ module.exports = {
 //   });
 // }
 
-update: function(req, res, next) {
-    var user_id = req.params.user_id;
 
-    User.findByIdAndUpdate(user_id, req.body, function(err, user) {
-      if (err) res.status(400).send(err);
-      User.findOne({
-        _id: user_id
-      }, function(err, user) {
-        res.json(user);
+// update: function(req, res, next) {
+//     var user_id = req.user.id;
+//
+//     User.findByIdAndUpdate(user_id, req.body, function(err, user) {
+//       if (err) res.status(400).send(err);
+//       User.findOne({
+//         _id: user_id
+//       }, function(err, user) {
+//         res.json(user);
+//       });
+//     });
+//   }
+
+update: function (req, res, next) {
+  var user_id = req.params.user_id;
+
+  var password = req.body.password;
+  var email = req.body.email;
+  var first_name = req.body.first_name;
+  var last_name = req.body.last_name;
+  var admin = req.body.admin;
+
+  console.log(user_id);
+  console.log(password);
+
+  User.findById(user_id, function (err, doc) {
+    if (doc) {
+      doc.password = password;
+      doc.email = email;
+      doc.first_name = first_name;
+      doc.last_name = last_name;
+      doc.admin = admin;
+
+      doc.save(function (err) {
+        if (err) return res.status(400).send(err);
+            res.send(doc);
       });
-    });
-  }
-
-
-  // user_by_id method
+    }
+  });
+}
 
 
 
