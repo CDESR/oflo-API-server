@@ -39,7 +39,7 @@ module.exports = function() {
     next();
   });
 
-express-jwt
+// express-jwt
 
   app.use( expressJWT({
     secret: jwt_secret})
