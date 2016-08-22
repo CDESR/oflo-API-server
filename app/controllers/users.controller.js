@@ -108,17 +108,22 @@ module.exports = {
 update: function (req, res, next) {
   var user_id = req.params.user_id;
 
+  // var updated_user = req.body;
+
   var password = req.body.password;
   var email = req.body.email;
   var first_name = req.body.first_name;
   var last_name = req.body.last_name;
   var admin = req.body.admin;
 
-  console.log(user_id);
-  console.log(password);
+  // console.log(user_id);
+  // console.log(password);
 
   User.findById(user_id, function (err, doc) {
     if (doc) {
+
+      // doc = updated_user;
+
       doc.password = password;
       doc.email = email;
       doc.first_name = first_name;
