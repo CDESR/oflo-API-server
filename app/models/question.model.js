@@ -8,11 +8,11 @@ var QuestionSchema = new mongoose.Schema({
   question_content: { type: String, trim: true },
   answered: { type: Boolean, default: false }
   // users: [ User.schema ]
-})
+});
 // question_content (string),
 // answered (boolean), which is set to default false
 // user (that is embedding the document of the user that created this question)
 
-
+QuestionSchema.set('timestamps', {});
 var Question = mongoose.model('Question', QuestionSchema);
 module.export = Question;
