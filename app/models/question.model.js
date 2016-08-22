@@ -5,7 +5,12 @@ var mongoose = require('mongoose'),
 
 // create Question schema that has the following fields:
 var QuestionSchema = new mongoose.Schema({
-  question_content: { type: String, trim: true, required: [true, "Question content is required"] },
+  question_content:
+  {
+    type: String,
+    trim: true,
+    required: [true, 'Question content is required']
+  },
   answered: { type: Boolean, default: false }
   // users: [ User.schema ]
 });

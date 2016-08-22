@@ -79,7 +79,7 @@ module.exports = {
                   .populate('votedYes')
                   .exec(function(err, commonquestion) {
                     if (err) res.status(400).send(err);
-// console.log("arr " + commonquestion.voteYes.length);
+
                     if ( commonquestion.votedYes.length > 0 ) {
                       var users_arr = commonquestion.votedYes;
                       var users_name_arr = [];
@@ -107,12 +107,12 @@ module.exports = {
 
       if (commonquestion) {
         commonquestion.votedYes.push(user_id);
+        console.log("Save ", commonquestion)
         commonquestion.save(function (err, commonquestion) {
           res.json(commonquestion);
         });
       }
 
-      res.json(commonquestion);
     })
     },
 
@@ -123,11 +123,20 @@ module.exports = {
     CommonQuestion.findOne({
       _id: commonquestion_id
     })
-                  .populate('users')
+                  .populate('votedNo')
                   .exec(function(err, commonquestion) {
                     if (err) res.status(400).send(err);
-                    if ( commonquestion.voteNo.length > 0 ) {
-                      res.json(commonquestion);
+                    if ( commonquestion.votedNo.length > 0 ) {
+                      var users_arr = commonquestion.votedNo;
+                      var users_name_arr = [];
+                      console.log(commonquestion.votedNo);
+
+                      users_arr.forEach(function (users) {
+                        users_name_arr.push(users.fullName);
+                      });
+
+
+                      res.json(users_name_arr);
                   }
                   else res.end();
                   });
@@ -137,11 +146,18 @@ module.exports = {
   voteno: function(req, res, next) {
 
     var commonquestion_id = req.params.commonquestion_id;
+    var user_id = req.body.user_id;
 
-    CommonQuestion.findByIdAndUpdate ( commonquestion_id, req.body, function(err, commonquestion) {
+    CommonQuestion.findById ( commonquestion_id, function(err, commonquestion) {
       if (err) return res.status(400).send(err);
 
-      res.json(commonquestion);
+      if (commonquestion) {
+        commonquestion.votedNo.push(user_id);
+        commonquestion.save(function (err, commonquestion) {
+          res.json(commonquestion);
+        });
+      }
+
     });
     },
 

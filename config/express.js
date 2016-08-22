@@ -40,15 +40,16 @@ module.exports = function() {
   });
 
 // express-jwt
+
   app.use( expressJWT({
     secret: jwt_secret})
     .unless({
       path: [ '/users/signup',
               '/users/login',
               {url: '/questions',
-              methods: ['GET']},
+              method: ['GET']},
               {url: '/commonquestions',
-              methods: ['GET']},
+              method: ['GET']},
             ]
           }
         )

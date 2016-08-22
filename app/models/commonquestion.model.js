@@ -9,8 +9,7 @@ var mongoose = require('mongoose'),
 // no (that is an array that embeds the documents of all the users that voted no on this question)
 
 var CommonQuestionSchema = new Schema({
-  content: {type: String, trim: true, required: [true, 'Question content is required']},
-  commonQuestion: String,
+  commonQuestion: {type: String, trim: true, required: [true, 'Question content is required']},
   canVote: {
     type: Boolean,
     default: true
