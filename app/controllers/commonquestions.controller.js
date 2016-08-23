@@ -46,7 +46,7 @@ module.exports = {
       if (err) return res.status(400).send(err);
 
       res.json(commonquestion);
-    })
+    });
     },
 
   // create method
@@ -95,22 +95,38 @@ module.exports = {
                   else res.end();
                   });
   },
-
   // voteyes method
   voteyes: function(req, res, next) {
 
     var commonquestion_id = req.params.commonquestion_id;
-    var user_id = req.body.user_id;
+    // var user_id = req.body.user_id;
+    var commonquestion_id = req.params.commonquestion_id;
+    var user_id = req.body.votedYes;
+    console.log(req.body);
+    console.log(req.body.votedYes);
+    console.log("user id : " + user_id);
 
     CommonQuestion.findById ( commonquestion_id, function(err, commonquestion) {
       if (err) return res.status(400).send(err);
 
       if (commonquestion) {
-        commonquestion.votedYes.push(user_id);
-        console.log("Save ", commonquestion)
-        commonquestion.save(function (err, commonquestion) {
-          res.json(commonquestion);
-        });
+
+        var voted_yes_before = checkVoted(commonquestion.votedYes, user_id);
+        var voted_no_before = checkVoted(commonquestion.votedNo, user_id);
+
+        if (!voted_yes_before && !voted_no_before) {
+          // console.log(String(commonquestion.votedYes[0]) === user_id );
+          // console.log(commonquestion.votedYes[0].id === user_id);
+          commonquestion.votedYes.push(user_id);
+          // console.log("Save ", commonquestion)
+          commonquestion.save(function (err, commonquestion) {
+            res.json(commonquestion);
+          });
+        }else{
+          console.log("Already voted");
+          res.send("Already voted")
+        }
+
       }
 
     })
@@ -146,16 +162,26 @@ module.exports = {
   voteno: function(req, res, next) {
 
     var commonquestion_id = req.params.commonquestion_id;
-    var user_id = req.body.user_id;
+    var user_id = req.body.votedNo;
+    console.log(req.body);
+    console.log(req.body.votedNo);
+    console.log("user id : " + user_id);
 
     CommonQuestion.findById ( commonquestion_id, function(err, commonquestion) {
       if (err) return res.status(400).send(err);
 
       if (commonquestion) {
-        commonquestion.votedNo.push(user_id);
-        commonquestion.save(function (err, commonquestion) {
-          res.json(commonquestion);
-        });
+        var voted_yes_before = checkVoted(commonquestion.votedYes, user_id);
+        var voted_no_before = checkVoted(commonquestion.votedNo, user_id);
+
+        if (!voted_yes_before && !voted_no_before) {
+          commonquestion.votedNo.push(user_id);
+          commonquestion.save(function (err, commonquestion) {
+            res.json(commonquestion);
+          });
+        }else{
+          res.send("Already voted");
+        }
       }
 
     });
@@ -168,10 +194,18 @@ module.exports = {
 
     CommonQuestion.findByIdAndUpdate ( commonquestion_id, req.body, function(err, commonquestion) {
       if (err) return res.status(400).send(err);
-
       res.json(commonquestion);
     });
     },
 
 
 };
+
+function checkVoted(voted_arr, user_id) {
+  for (var i = 0; i < voted_arr.length; i++) {
+    if( String(voted_arr[i]) === user_id){
+      return true;
+    }
+  }
+  return false;
+}
