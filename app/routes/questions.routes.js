@@ -11,13 +11,20 @@ module.exports = function(app) {
   // /questions with action "post" that calls the create method in questionsController that creates new question
 
   // /questions/:date with action "get" that calls the dateshow method in questionsController shows all the questions created on that date
-  app.route('/questions/:date')
-    .get(questionsController.dateshow);
+  // app.route('/questions/:date')
+  //   .get(questionsController.dateshow);
 
   // /questions/:question_id with action "put" that calls the answered method updates the answered field of the question with id = question_id
-  app.route('/questions/:question_id')
-
-    .put(questionsController.answered);
+  app.route('/questions/put/:question_id')
+    .get(function(req, res) {
+      res.send('get test');
+    })
+    .post(function(req, res) {
+      res.send('post test');    
+    })
+    .put(function(req, res) {
+      res.send('test');
+    });
 
 
 

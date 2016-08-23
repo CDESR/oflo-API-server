@@ -26,9 +26,9 @@ module.exports = function() {
   }
 
   app.use(function(req, res, next) {
-    res.headers("Access-Control-Allow-Origin", "*");
-    res.headers("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-    res.headers("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS");
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    res.header("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS");
     next();
   });
 
@@ -42,19 +42,19 @@ module.exports = function() {
 
 // express-jwt
 
-  app.use( expressJWT({
-    secret: jwt_secret})
-    .unless({
-      path: [ '/users/signup',
-              '/users/login',
-              {url: '/questions',
-              method: ['GET']},
-              {url: '/commonquestions',
-              method: ['GET']},
-            ]
-          }
-        )
-      );
+  // app.use( expressJWT({
+  //   secret: jwt_secret})
+  //   .unless({
+  //     path: [ '/users/signup',
+  //             '/users/login',
+  //             {url: '/questions',
+  //             method: ['GET']},
+  //             {url: '/commonquestions',
+  //             method: ['GET']},
+  //           ]
+  //         }
+  //       )
+  //     );
 
 
   require('../app/routes/users.routes')(app);

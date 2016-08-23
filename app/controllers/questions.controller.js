@@ -48,6 +48,7 @@ module.exports = {
  },
   // answered method
   answered: function(req, res, next) {
+    return res.send(req);
 
     var question_id = req.params.question_id;
 
