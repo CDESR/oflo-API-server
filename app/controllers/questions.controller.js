@@ -11,6 +11,18 @@ module.exports = {
             res.json(question);
           });
 },
+
+  // show method
+  show: function (req, res, next) {
+    var user_id = req.params.user_id;
+    Question.find({user_id: user_id})
+            .exec(function (err, questions) {
+              if (err) {
+                res.status(400).send(err);
+              }
+              res.json(questions);
+            });
+  },
   // create method
   create: function(req, res, next) {
      var question_object = req.body;
