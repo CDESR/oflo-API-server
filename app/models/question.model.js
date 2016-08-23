@@ -11,8 +11,9 @@ var QuestionSchema = new mongoose.Schema({
     trim: true,
     required: [true, 'Question content is required']
   },
+  
   answered: { type: Boolean, default: false }
-  // users: [ User.schema ]
+
 });
 // question_content (string),
 // answered (boolean), which is set to default false

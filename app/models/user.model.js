@@ -83,4 +83,5 @@ userSchema.virtual('fullName')
 userSchema.set('toJSON', { virtuals: true});
 userSchema.set('timestamps', {}); // default timestamps by default
 
-mongoose.model('User', userSchema);
+var User = mongoose.model('User', userSchema);
+module.export = User; 

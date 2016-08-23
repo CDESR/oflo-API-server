@@ -16,7 +16,7 @@ module.exports = {
      var questionObject = new Question(req.body.question);
 
      var new_question = new Question(question_object);
-    //  question.users.push(new_user);
+
 
      new_question.save(function(err, question) {
        if (err) return res.status(400).send(err);
