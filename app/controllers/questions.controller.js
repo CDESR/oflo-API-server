@@ -4,11 +4,12 @@ var User = require('mongoose').model('User');
 module.exports = {
   // index method
   index: function(req, res, next) {
-  Question.find({}, function(err, questions) {
-    if (err) return next(err);
-
-    res.json(questions);
-  });
+  Question.find()
+          .populate('user_id')
+          .exec(function(err, question) {
+            if (err) res.status(400).send(err);
+            res.json(question);
+          });
 },
   // create method
   create: function(req, res, next) {
@@ -36,11 +37,13 @@ module.exports = {
     var querystartdate = new Date(year,month, startday);
     var queryenddate = new Date(year,month, endday);
 
-    Question.find({createdAt: {"$gte": querystartdate, "$lt": queryenddate}   }, function (err, questions) {
-      if (err) {
-        res.status(400).send(err);
-      }
-      res.json(questions);
+    Question.find({createdAt: {"$gte": querystartdate, "$lt": queryenddate}   })
+            .populate('users_id')
+            .exec (function (err, questions) {
+              if (err) {
+                res.status(400).send(err);
+              }
+              res.json(questions);
     });
  },
   // answered method
