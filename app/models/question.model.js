@@ -11,7 +11,7 @@ var QuestionSchema = new mongoose.Schema({
     trim: true,
     required: [true, 'Question content is required']
   },
-  answered: { type: String, default: "false" },
+  answered: { type: Boolean, default: false },
   user_id: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
