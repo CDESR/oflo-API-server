@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+- node
+deploy:
+  provider: heroku
+  api_key:
+    secure: Eaq6z7GNw+8yP4j2rS9iT81nPvk93X85tv3ljumsQTvOzGhnt91LcNGJCgcdcoQFY3dlZE+uyiwQK49w4KhxAub8A/UP0sju2UPiWtfxMgyOrcMTd0fPhwlca9hnOlwSk2CYydFeWIJCcEMlvCF2S0L6HoVQC6ryZAOpWLtYhXvxi/h4Mh5I3JP9Uxe68J7rAkahCDbNzNqlGXUgrMiahQGez+qKq8EOPg6+ZGuXnOm+sgV7GhWkTkxZwlTtEcJNmMd0hXq85WR5DtWTeP9TeCFM++RBLj+ZAjX0VUoYdWXvDcfd/BaEB4ox9s6bl0DYRIllHhJDRcM2oR9TVbCYC7fj8MiwZ+YShDhtze8naflR9suJrmQmsfzGwwXJ2omOnC1oXsaiHWP9HsGTJjk7J2ysDvLwjal2ag3cUetCtAE2i1MokoIqLFoKdLJdZs3LrNr3mOl/7EMME350NuJq10/IwaJnjJ8LKCVqQJ67xJiZ3bstGSIlNxwZrKSwrs2j4q3hxjnViTFTFgsj1qoDlVbVcO7YuFvaRyGD5NAOra0xsgTVzxpO6q426BfQpw149OS1S77i6bR3ygX1pGkujCHP7hi/Lcc7EZz/J6J348p5FZrEMz4cALKGtUEwdRzK2jefeZLbFxmGVoBV5+WYmXO8Ap5EdBO2PHwqd1uyCI4=
+  app: creds-oflo-server
+  on:
+    repo: CDESR/oflo-API-server

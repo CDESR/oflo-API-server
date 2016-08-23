@@ -22,7 +22,8 @@
     "method-override": "^2.3.6",
     "mongoose": "^4.5.8",
     "morgan": "^1.7.0",
-    "request": "^2.74.0"
+    "request": "^2.74.0",
+    "travis": "^0.1.1"
   },
   "devDependencies": {
     "express-session": "^1.14.0",
