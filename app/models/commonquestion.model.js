@@ -22,7 +22,7 @@ var CommonQuestionSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   }],
-  answer: String
+  answered: Boolean
 },
 {
   timestamps: {}
