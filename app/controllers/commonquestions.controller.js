@@ -183,10 +183,9 @@ module.exports = {
   answered: function(req, res, next) {
 
     var commonquestion_id = req.params.commonquestion_id;
-
+    
     CommonQuestion.findByIdAndUpdate ( commonquestion_id, req.body, function(err, commonquestion) {
       if (err) return res.status(400).send(err);
-
       res.json(commonquestion);
     });
     },

@@ -6,14 +6,13 @@ var userSchema = new Schema ({
   first_name: {
     type: String,
     trim: true,
-    required: true
+    required: [true, 'Please fill in your first name']
 
   },
   last_name:{
     type: String,
     trim: true,
-    required: true
-
+    required: [true, 'Please fill in your last name']
   },
   email: {
     type: String,
@@ -23,7 +22,7 @@ var userSchema = new Schema ({
   },
   password: {
     type: String,
-    required: true,
+    required: [true, 'Password is required'],
     validate: [
       function(password) {
         return password.length >= 6;

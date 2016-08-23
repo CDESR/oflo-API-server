@@ -51,13 +51,13 @@ module.exports = {
           };
           var jwt_token = jwt.sign(payload, jwt_secret, expiryObj);
 
-          return res.status(200).send({token: jwt_token, user_id: db_user.id, is_admin: db_user.admin});
+          return res.status(200).send({token: jwt_token, user_id: db_user.id, is_admin: db_user.admin, first_name: db_user.first_name});
         } else {
-          return res.status(401).send({ message: 'login failed' });
+          return res.status(401).send({ message: 'Login failed' });
         }
       });
     } else {
-      return res.status(401).send({ message: 'user not found in database' });
+      return res.status(401).send({ message: 'User not found in database' });
     }
   });
 },
