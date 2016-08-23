@@ -25,6 +25,13 @@ module.exports = function() {
     app.use(compress());
   }
 
+  app.use(function(req, res, next) {
+    res.headers("Access-Control-Allow-Origin", "*");
+    res.headers("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    res.headers("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS");
+    next();
+  });
+
   app.use(bodyParser.urlencoded({
     extended: false
   }));
@@ -32,12 +39,6 @@ module.exports = function() {
   app.use(bodyParser.json());
   app.use(methodOverride());
 
-
-  app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-    next();
-  });
 
 // express-jwt
 
