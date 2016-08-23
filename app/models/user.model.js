@@ -6,14 +6,13 @@ var userSchema = new Schema ({
   first_name: {
     type: String,
     trim: true,
-    required: [true, 'First name is required']
+    required: [true, 'Please fill in your first name']
 
   },
   last_name:{
     type: String,
     trim: true,
-    required: [true, 'Last name is required']
-
+    required: [true, 'Please fill in your last name']
   },
   email: {
     type: String,
