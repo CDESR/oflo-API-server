@@ -100,7 +100,7 @@ module.exports = {
 
     var commonquestion_id = req.params.commonquestion_id;
     // var user_id = req.body.user_id;
-    var user_id = req.body.votedYes;
+    var user_id = req.body.user;
 
     CommonQuestion.findById ( commonquestion_id, function(err, commonquestion) {
       if (err) return res.status(400).send(err);
@@ -159,7 +159,7 @@ module.exports = {
 
     var commonquestion_id = req.params.commonquestion_id;
     // var user_id = req.body.user_id;
-    var user_id = req.body.votedNo;
+    var user_id = req.body.user;
 
     CommonQuestion.findById ( commonquestion_id, function(err, commonquestion) {
       if (err) return res.status(400).send(err);
