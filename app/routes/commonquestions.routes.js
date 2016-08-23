@@ -31,8 +31,8 @@ module.exports = function(app) {
 
   // /commonquestions/:date with action "get"  that calls the dateshow method in commonquestionsController that shows the common questions that corresponds to the :date.
 
-  app.route('/commonquestions/:date')
-    .get(commonquestionsController.dateshow);
+  // app.route('/commonquestions/:date')
+  //   .get(commonquestionsController.dateshow);
 
 
   // /commonquestions/:commonquestion_id/yes with action "get" that calls the showyes method in commonquestionsController that shows all the users that voted yes for the common question that has has id = :commonquestion_id

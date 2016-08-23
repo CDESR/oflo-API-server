@@ -99,7 +99,8 @@ module.exports = {
   voteyes: function(req, res, next) {
 
     var commonquestion_id = req.params.commonquestion_id;
-    var user_id = req.body.user_id;
+    // var user_id = req.body.user_id;
+    var user_id = req.body.votedYes;
 
     CommonQuestion.findById ( commonquestion_id, function(err, commonquestion) {
       if (err) return res.status(400).send(err);
@@ -157,7 +158,8 @@ module.exports = {
   voteno: function(req, res, next) {
 
     var commonquestion_id = req.params.commonquestion_id;
-    var user_id = req.body.user_id;
+    // var user_id = req.body.user_id;
+    var user_id = req.body.votedNo;
 
     CommonQuestion.findById ( commonquestion_id, function(err, commonquestion) {
       if (err) return res.status(400).send(err);
@@ -183,7 +185,7 @@ module.exports = {
   answered: function(req, res, next) {
 
     var commonquestion_id = req.params.commonquestion_id;
-    
+
     CommonQuestion.findByIdAndUpdate ( commonquestion_id, req.body, function(err, commonquestion) {
       if (err) return res.status(400).send(err);
       res.json(commonquestion);
