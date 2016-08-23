@@ -34,9 +34,9 @@ module.exports = function() {
 
 
   app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-    res.header("Access-Control-Allow-Methods", "POST, GET, PUT");
+    res.headers("Access-Control-Allow-Origin", "*");
+    res.headers("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    // res.headers("Access-Control-Allow-Methods", "POST, GET, PUT");
     next();
   });
 
