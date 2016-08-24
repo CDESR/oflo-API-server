@@ -4,6 +4,7 @@ module.exports = {
   // index method
   index: function(req, res) {
     CommonQuestion.find()
+                  .sort({createdAt: -1})
                   .populate('votedYes')
                   .populate('votedNo')
                   .exec(function(err, commonquestion) {

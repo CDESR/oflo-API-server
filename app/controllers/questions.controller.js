@@ -5,6 +5,7 @@ module.exports = {
   // index method
   index: function(req, res, next) {
   Question.find()
+          .sort({createdAt: -1})
           .populate('user_id')
           .exec(function(err, question) {
             if (err) res.status(400).send(err);
@@ -16,6 +17,7 @@ module.exports = {
   show: function (req, res, next) {
     var user_id = req.params.user_id;
     Question.find({user_id: user_id})
+            .sort({createdAt: -1})
             .exec(function (err, questions) {
               if (err) {
                 res.status(400).send(err);
