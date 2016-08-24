@@ -40,7 +40,7 @@ module.exports = {
   // show one method
   show: function (req, res, next) {
     var commonquestion_id = req.params.commonquestion_id;
-    CommonQuestion.findOne({id: commonquestion_id})
+    CommonQuestion.findOne({_id: commonquestion_id})
                   .populate('users')
                   .exec(function (err, commonquestion) {
                     if (err) {
