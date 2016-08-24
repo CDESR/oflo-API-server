@@ -41,7 +41,8 @@ module.exports = {
   show: function (req, res, next) {
     var commonquestion_id = req.params.commonquestion_id;
     CommonQuestion.findOne({_id: commonquestion_id})
-                  .populate('users')
+                  .populate('votedYes')
+                  .populate('votedNo')
                   .exec(function (err, commonquestion) {
                     if (err) {
                       return res.status(400).send(err);
