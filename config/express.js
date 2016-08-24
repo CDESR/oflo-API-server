@@ -44,19 +44,19 @@ module.exports = function() {
 
 // express-jwt
 
-  // app.use( expressJWT({
-  //   secret: jwt_secret})
-  //   .unless({
-  //     path: [ '/users/signup',
-  //             '/users/login',
-  //             {url: '/questions',
-  //             method: ['GET']},
-  //             {url: '/commonquestions',
-  //             method: ['GET']},
-  //           ]
-  //         }
-  //       )
-  //     );
+  app.use( expressJWT({
+    secret: jwt_secret})
+    .unless({
+      path: [ '/users/signup',
+              '/users/login',
+              {url: '/questions',
+              method: ['GET']},
+              {url: '/commonquestions/show',
+              method: ['GET']},
+            ]
+          }
+        )
+      );
 
 
   require('../app/routes/users.routes')(app);
