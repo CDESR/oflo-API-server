@@ -106,22 +106,27 @@ module.exports = {
       if (err) return res.status(400).send(err);
 
       if (commonquestion) {
+        if (commonquestion.canVote === "true") {
+          var voted_yes_before = checkVoted(commonquestion.votedYes, user_id);
+          var voted_no_before = checkVoted(commonquestion.votedNo, user_id);
 
-        var voted_yes_before = checkVoted(commonquestion.votedYes, user_id);
-        var voted_no_before = checkVoted(commonquestion.votedNo, user_id);
-
-        if (!voted_yes_before && !voted_no_before) {
-          // console.log(String(commonquestion.votedYes[0]) === user_id );
-          // console.log(commonquestion.votedYes[0].id === user_id);
-          commonquestion.votedYes.push(user_id);
-          // console.log("Save ", commonquestion)
-          commonquestion.save(function (err, commonquestion) {
-            res.json(commonquestion);
-          });
+          if (!voted_yes_before && !voted_no_before) {
+            // console.log(String(commonquestion.votedYes[0]) === user_id );
+            // console.log(commonquestion.votedYes[0].id === user_id);
+            commonquestion.votedYes.push(user_id);
+            // console.log("Save ", commonquestion)
+            commonquestion.save(function (err, commonquestion) {
+              res.json(commonquestion);
+            });
+          }else{
+            console.log("Already voted");
+            res.send("Already voted")
+          }
         }else{
-          console.log("Already voted");
-          res.send("Already voted")
+          res.send("Voting closed")
         }
+
+
 
       }
 
@@ -165,17 +170,20 @@ module.exports = {
       if (err) return res.status(400).send(err);
 
       if (commonquestion) {
-        var voted_yes_before = checkVoted(commonquestion.votedYes, user_id);
-        var voted_no_before = checkVoted(commonquestion.votedNo, user_id);
+        if (commonquestion.canVote === "false") {
+          var voted_yes_before = checkVoted(commonquestion.votedYes, user_id);
+          var voted_no_before = checkVoted(commonquestion.votedNo, user_id);
 
-        if (!voted_yes_before && !voted_no_before) {
-          commonquestion.votedNo.push(user_id);
-          commonquestion.save(function (err, commonquestion) {
-            res.json(commonquestion);
-          });
-        }else{
-          res.send("Already voted");
+          if (!voted_yes_before && !voted_no_before) {
+            commonquestion.votedNo.push(user_id);
+            commonquestion.save(function (err, commonquestion) {
+              res.json(commonquestion);
+            });
+          }else{
+            res.send("Already voted");
+          }
         }
+
       }
 
     });
