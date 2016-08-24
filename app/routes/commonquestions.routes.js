@@ -20,6 +20,7 @@ module.exports = function(app) {
     .get(commonquestionsController.showvote);
 
   app.route('/commonquestions/:commonquestion_id')
+    .get(commonquestionsController.show)
     .put(commonquestionsController.changestatus);
 
   // app.route('/commonquestions/vote/:commonquestion_id')
