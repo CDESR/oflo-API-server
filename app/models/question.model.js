@@ -9,7 +9,13 @@ var QuestionSchema = new mongoose.Schema({
   {
     type: String,
     trim: true,
-    required: [true, 'Question content is required']
+    required: [true, 'Question content is required'],
+    validate: [
+      function(question) {
+        return question.length <= 80;
+      },
+      'Question is too long'
+    ]
   },
   answered: { type: Boolean, default: false },
   user_id: [{
