@@ -121,7 +121,7 @@ module.exports = {
       if (err) return res.status(400).send(err);
 
       if (commonquestion) {
-        if (commonquestion.canVote === "true") {
+        if (commonquestion.canVote) {
           var voted_yes_before = checkVoted(commonquestion.votedYes, user_id);
           var voted_no_before = checkVoted(commonquestion.votedNo, user_id);
 
@@ -185,7 +185,7 @@ module.exports = {
       if (err) return res.status(400).send(err);
 
       if (commonquestion) {
-        if (commonquestion.canVote === "true") {
+        if (commonquestion.canVote) {
           console.log(user_id);
           var voted_yes_before = checkVoted(commonquestion.votedYes, user_id);
           var voted_no_before = checkVoted(commonquestion.votedNo, user_id);
