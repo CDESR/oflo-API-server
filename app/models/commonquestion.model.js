@@ -11,8 +11,8 @@ var mongoose = require('mongoose'),
 var CommonQuestionSchema = new Schema({
   commonQuestion: {type: String, trim: true, required: [true, 'Question content is required']},
   canVote: {
-    type: String,
-    default: "true"
+    type: Boolean,
+    default: true
   },
   votedYes: [{
     type: mongoose.Schema.Types.ObjectId,
@@ -22,7 +22,7 @@ var CommonQuestionSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   }],
-  answered:  {type: String, default: "false" }
+  answered:  {type: Boolean, default: false }
 },
 {
   timestamps: {}
